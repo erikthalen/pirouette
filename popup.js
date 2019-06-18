@@ -1,47 +1,46 @@
-const button = document.body.querySelector('#button')
+const input = document.body.querySelector('input')
 
-const containerStyle = {
-	transform: 'translate(-50%, -50%)',
-	position: 'fixed',
-	top: '50%',
-	left: '50%',
-	width: '100vw',
-	height: '100vh',
-	overflow: 'auto',
-	transformOrigin: 'left top'
-}
-
-const callback = tabBody => {
-	tabBody.style.opacity = 0.5
-	window.addEventListener("message", function(event) {
-	  // We only accept messages from ourselves
-	  if (event.source != window)
-	    return;
-	
-	  if (event.data.type && (event.data.type == "FROM_PAGE")) {
-	    console.log("Content script received: " + event.data.text);
-	    port.postMessage(event.data.text);
-	  }
-	}, false);
+const init = () => {
+	chrome.tabs.query(
+		{
+			active: true,
+			currentWindow: true
+		},
+		function(tabs) {
+			chrome.tabs.sendMessage(
+				tabs[0].id,
+				{
+					type: 'init',
+				},
+				function(response) {
+					console.log(response)
+					input.value = response
+				}
+			);
+		}
+	);
 }
 
 const rotate = event => {
-	document.body.style.background = 'red'
-	const rotate = 20
+	const deg = event.target.value
 
-	// window.postMessage({ type: "FROM_PAGE", text: "Hello from the webpage!" }, "*");
-	chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-		chrome.tabs.executeScript(
-			tabs[0].id,
-			{
-				file: 'inject.js',
-			},
-			// callback
-		);
-	});
-
-
+	chrome.tabs.query(
+		{
+			active: true,
+			currentWindow: true
+		},
+		function(tabs) {
+			chrome.tabs.sendMessage(
+				tabs[0].id,
+				{
+					type: 'update',
+					code: `${ deg }`
+				},
+			);
+		}
+	);
 }
 
 
-button.addEventListener('click', rotate)
+window.onload = init
+input.addEventListener('input', rotate)

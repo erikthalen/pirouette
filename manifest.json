@@ -8,19 +8,25 @@
 		"default_popup": "popup.html",
 		"default_icon": {
 			"16": "icon/Oval.png",
-        	"32": "icon/Oval@2x.png",
-        	"48": "icon/Oval@3x.png",
-        	"128": "icon/Oval@8x.png"
+     	"32": "icon/Oval@2x.png",
+     	"48": "icon/Oval@3x.png",
+     	"128": "icon/Oval@8x.png"
 		}
 	},
 	"icons": {
 		"16": "icon/Oval.png",
-        "32": "icon/Oval@2x.png",
-        "48": "icon/Oval@3x.png",
-        "128": "icon/Oval@8x.png"
+    "32": "icon/Oval@2x.png",
+    "48": "icon/Oval@3x.png",
+    "128": "icon/Oval@8x.png"
 	},
 	"permissions": [
 		"activeTab"
 	],
-	"run_at": "document_start"
+	"run_at": "document_start",
+	"content_scripts": [
+		{
+			"matches": ["<all_urls>"],
+			"js": ["content.js"]
+		}
+	]
 }
