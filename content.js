@@ -4,7 +4,7 @@ const el = document.createElement('div')
 el.id = 'pirouette'
 
 Object.assign(el.style, {
-	transition: 'transform 2s cubic-bezier(0, 1, 0, 1)',
+	// transition: 'transform 2s cubic-bezier(0, 1, 0, 1)',
 	position: 'fixed',
 	width: '100vw',
 	height: '100vh',
