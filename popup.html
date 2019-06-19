@@ -17,6 +17,17 @@
 				margin: 20px;
 			}
 
+			label {
+				position: relative;
+			}
+
+			label span {
+				width: 15px;
+				height: 15px;
+				border-radius: 20px;
+				background: lightsalmon;
+			}
+
 			path { fill: transparent; }
 			text { fill: lightsalmon; }
 
@@ -31,7 +42,15 @@
 			</text>
 		</svg>
 
-		<input type="range" min=-180 max=180 step=10 />
+		<!--
+		<label for="input">
+			<span></span>
+		</label>
+		-->
+		
+		<input id="input" type="range" min=-180 max=180 step=10 />
+
+		<div class="slider"></div>
 
 		<script src="popup.js"></script>
 

@@ -41,6 +41,20 @@ const rotate = event => {
 	);
 }
 
+console.log(circularSlider)
+
+
+// https://github.com/djoga98/Circular-Slider
+const slider1 = new circularSlider({
+    container: document.querySelector('.slider'),
+    color: "#663A69",
+    range: [100, 1000],
+    step: 1,
+    radius: 250,
+    text: "Transportation"
+});
+slider1.handleInput();
+
 
 window.onload = init
 input.addEventListener('input', rotate)
