@@ -2,34 +2,10 @@
 <html>
   <head>
     <title>Pirouette</title>
+		<link href="popup.css" rel="stylesheet">
   </head>
   <body>
 		<style>
-
-			body {
-				font-family: system-ui;
-				margin: 50px;
-				text-align: center;
-				font-size: 81px;
-			}
-
-			input {
-				margin: 20px;
-			}
-
-			label {
-				position: relative;
-			}
-
-			label span {
-				width: 15px;
-				height: 15px;
-				border-radius: 20px;
-				background: lightsalmon;
-			}
-
-			path { fill: transparent; }
-			text { fill: lightsalmon; }
 
 		</style>
 
@@ -47,11 +23,10 @@
 			<span></span>
 		</label>
 		-->
-		
-		<input id="input" type="range" min=-180 max=180 step=10 />
 
-		<div class="slider"></div>
+		<!-- <input id="input" type="range" min=-180 max=180 step=10 /> -->
 
+		<script src="slider.js"></script> 
 		<script src="popup.js"></script>
 
   </body>
