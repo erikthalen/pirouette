@@ -41,6 +41,8 @@ function circularSlider(options) {
     input.addEventListener("input", function(event) {
         this.progress(event.target.valueAsNumber);
     });
+	
+	this.input = input
 
     // var pricing = document.createElement("span");
     // pricing.setAttribute('class', 'pricing');
@@ -111,7 +113,6 @@ function circularSlider(options) {
     }
     ;
     this.move = (e)=>{
-				console.log('path: ', e, e.path)
         e.path[1].style.zIndex = '123';
         var position;
         if (e.type == 'mouseup' || e.type == 'mousedown' || e.type == 'mousemove' || e.type == 'click') {
@@ -144,6 +145,8 @@ function circularSlider(options) {
         var progress = value / options.range[1];
         var dashoffset = CIRCUMFERENCE * (1 - progress);
         progressValue.style.strokeDashoffset = dashoffset;
+
+		options.callback(value)
     }
     ;
     progressValue.style.strokeDasharray = CIRCUMFERENCE;

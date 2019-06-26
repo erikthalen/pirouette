@@ -1,13 +1,4 @@
-// https://github.com/djoga98/Circular-Slider
-const input = new circularSlider({
-  container: document.body,
-  color: "transparent",
-  range: [0, 360],
-  step: 10,
-  radius: 50,
-  text: "circleInput"
-});
-input.handleInput();
+const text = document.body.querySelector('.text')
 
 const init = () => {
 	chrome.tabs.query(
@@ -22,17 +13,15 @@ const init = () => {
 					type: 'init',
 				},
 				function(response) {
-					console.log(response)
-					input.value = response
+					circle.input.value = response
 				}
 			);
 		}
 	);
 }
 
-const rotate = event => {
-	console.log(event.target.value)
-	const deg = event.target.value
+const rotate = value => {
+	const deg = value
 
 	chrome.tabs.query(
 		{
@@ -40,6 +29,7 @@ const rotate = event => {
 			currentWindow: true
 		},
 		function(tabs) {
+			text.style.transform = `rotate(${ deg }deg`
 			chrome.tabs.sendMessage(
 				tabs[0].id,
 				{
@@ -51,6 +41,17 @@ const rotate = event => {
 	);
 }
 
+// https://github.com/djoga98/Circular-Slider
+const circle = new circularSlider({
+  container: document.body,
+  color: "transparent",
+  range: [0, 360],
+  step: 10,
+  radius: 50,
+  text: "",
+  callback: rotate
+});
+circle.handleInput();
 
+// circle.input.addEventListener('input', rotate)
 window.onload = init
-if(input) input.addEventListener('input', rotate)
