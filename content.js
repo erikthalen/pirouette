@@ -15,11 +15,15 @@ Object.assign(el.style, {
 
 const init = () => {
 	if(document.querySelector('#pirouette')) return
+	
+	const currScroll = window.pageYOffset
 
 	el.style.backgroundColor = window.getComputedStyle(document.body).backgroundColor || 'white'
 	
 	el.append(...document.body.children)
 	document.body.append(el)
+
+	el.scrollTop = currScroll
 }
 
 const update = deg => {

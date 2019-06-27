@@ -1,4 +1,4 @@
-const text = document.body.querySelector('.text')
+const text = document.body.querySelector('h1')
 
 const init = () => {
 	chrome.tabs.query(
@@ -13,7 +13,7 @@ const init = () => {
 					type: 'init',
 				},
 				function(response) {
-					circle.input.value = response
+					circle.initPos(response)
 				}
 			);
 		}
@@ -47,11 +47,10 @@ const circle = new circularSlider({
   color: "transparent",
   range: [0, 360],
   step: 10,
-  radius: 50,
+  radius: 80,
   text: "",
   callback: rotate
 });
 circle.handleInput();
 
-// circle.input.addEventListener('input', rotate)
 window.onload = init
